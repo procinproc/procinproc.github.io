@@ -1,135 +1,135 @@
-# $BL?L>5,Ls(B
+# 命名規約
 
-$B$3$N%I%-%e%a%s%H$*$h$S(B GitHub Actions $B<BAu$G$O!"0J2<$NL>>N$rMQ$$$^$9!#(B
+このドキュメントおよび GitHub Actions 実装では、以下の名称を用います。
 
-## $B%o!<%/%U%m!<$N%U%!%$%kL>$K$D$$$F(B
+## ワークフローのファイル名について
 
-$B%j%]%8%H%j(B/.github/workflow/*.yml $B$H$7$F@_CV$9$k%o!<%/%U%m!<$NL?L>5,Ls$G$9!#(B
+リポジトリ/.github/workflow/*.yml として設置するワークフローの命名規約です。
 
 * test.yml
 
-	* git push $B$d(B pull request $B$r7@5!$K!"%F%9%H$r<B9T$9$k%o!<%/%U%m!<$NL>>N(B
+	* git push や pull request を契機に、テストを実行するワークフローの名称
 
-* rpm.RPM$BL>>N(B.yml
+* rpm.RPM名称.yml
 
-	* source RPM $B$*$h$S(B binary RPM $B$r@8@.$9$k%o!<%/%U%m!<$NL>>N(B
+	* source RPM および binary RPM を生成するワークフローの名称
 
-* docker.Docker$B%$%a!<%8L>>N(B.yml
+* docker.Dockerイメージ名称.yml
 
-	* Docker $B%$%a!<%8$r@8@.$9$k%o!<%/%U%m!<$NL>>N(B
+	* Docker イメージを生成するワークフローの名称
 
-* $BBP>]%o!<%/%U%m!<%U%!%$%kL>(B.invoke.yml
+* 対象ワークフローファイル名.invoke.yml
 
-$B0z?t$D$-$N(B repository_dispatch $B$r(B Web UI $B$G5/F0$9$kMQ(B
+引数つきの repository_dispatch を Web UI で起動する用
 
-	* workflow_dispatch $B$9$J$o$A(B WEb UI $B$r7@5!$K!"(B
-	  $BB>$N%o!<%/%U%m!<$r(B repository_dispatch $B$G5/F0$9$k%o!<%/%U%m!<$O!"(B
-	  $B5/F0BP>]$N%U%!%$%kL>$K(B .invoke $B$rIU2C$7$?L>>N$H$7$^$9(B
+	* workflow_dispatch すなわち WEb UI を契機に、
+	  他のワークフローを repository_dispatch で起動するワークフローは、
+	  起動対象のファイル名に .invoke を付加した名称とします
 
-## $B%o!<%/%U%m!<$N(B name $B$K$D$$$F(B
+## ワークフローの name について
 
-$B%o!<%/%U%m!<$N(B name $BMs$O!"(BGitHub Actions $B$N(B Web UI $B$GI=<($5$l$k9`L\$G$9!#(B
-$B0J2<$N$h$&$K@_Dj$7$^$9(B
+ワークフローの name 欄は、GitHub Actions の Web UI で表示される項目です。
+以下のように設定します
 
-* $BF0;l$G3+;O$9$kL?NaJ8(B
+* 動詞で開始する命令文
 
-	* on workflow_dispatch $B$r4^$`(B ($B$9$J$o$A<jF0(B Web UI $B$G5/F0$G$-$k(B) $B%o!<%/%U%m!<$GMQ$$$^$9(B
+	* on workflow_dispatch を含む (すなわち手動 Web UI で起動できる) ワークフローで用います
 
-	* $BNc(B
+	* 例
 
 		* create pip-glibc RPM
 		* create pip-glibc Docker image
 
-* $BL>;l6g(B
+* 名詞句
 
-	* on workflow_dispatch $B$r4^$^$J$$!"FbIt<BAuMQES$N%o!<%/%U%m!<$GMQ$$$^$9(B
+	* on workflow_dispatch を含まない、内部実装用途のワークフローで用います
 
-	* $BNc(B
+	* 例
 
 		* pip-glibc RPM
 		* pip-glibc Docker image
 
-## $B%o!<%/%U%m!<$GMxMQ$9$kJQ?t$NL>>N(B
+## ワークフローで利用する変数の名称
 
-$B!V!A(Bs $B!W$N$h$&$KJ#?t7A$N>l9g$O!"(B
-$B%j%9%H$J$$$7%+%s%^6h@Z$j$NJ8;zNs7A<0$GJ#?t$NMWAG$rJ];}$7$^$9(B
+「〜s 」のように複数形の場合は、
+リストないしカンマ区切りの文字列形式で複数の要素を保持します
 
 * distro
 
-	* centos7 $B$J$$$7(B centos8 $B$NCM$r$H$j$^$9(B
+	* centos7 ないし centos8 の値をとります
 
 * platform
 
-	* Docker $B$N<B9T4D6-L>$G$9(B
+	* Docker の実行環境名です
 
-	* linux/amd64 $B$J$$$7(B linux/arm64 $B$NCM$r$H$j$^$9(B
+	* linux/amd64 ないし linux/arm64 の値をとります
 
 * arch
 
-	* platform $B$+$i!V(Blinux/$B!W$r:o=|$7$?L>>N$G$9(B
+	* platform から「linux/」を削除した名称です
 
-	* amd64 $B$J$$$7(B arm64 $B$NCM$r$H$j$^$9(B
+	* amd64 ないし arm64 の値をとります
 
 * archtype
 
-	* Docker $B$N%$%a!<%8<oJL$G$9(B
+	* Docker のイメージ種別です
 
-	* arch $B$G$H$j$&$kCM$K2C$(!"$5$i$K!V(Bmultiarch$B!W$H$$$&CM$r$H$j$^$9(B
+	* arch でとりうる値に加え、さらに「multiarch」という値をとります
 
-# $B<BAu$7$?%o!<%/%U%m!<(B
+# 実装したワークフロー
 
-$B0J2<!V%j%]%8%H%jL>(B:$B%o!<%/%U%m!<%U%!%$%kL>!W$H$$$&7A<0$G5-=R$7$^$9!#(B
+以下「リポジトリ名:ワークフローファイル名」という形式で記述します。
 
-client_payload $B$O(B repository_dispatch $B$G<u$1<h$kF~NO0z?t$G$9!#(B
+client_payload は repository_dispatch で受け取る入力引数です。
 
-## PiP-glibc $B%j%]%8%H%j(B
+## PiP-glibc リポジトリ
 
 * PiP-glibc:test.yml
 
-	* PiP-glibc $B$N%F%9%H(B ($B<B:]$K$O%S%k%I$N$_(B)
+	* PiP-glibc のテスト (実際にはビルドのみ)
 
-	* push, pull-request, workflow_dispatch $B$G5/F0$7$^$9(B
+	* push, pull-request, workflow_dispatch で起動します
 
 * PiP-glibc:rpm.pip-glibc.yml
 
-	* PiP-glibc $B$N(B RPM $B$N%S%k%I(B
+	* PiP-glibc の RPM のビルド
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: centos7 centos8
 		* archs: amd64 arm64
 
 * PiP-glibc:rpm.pip-glibc.invoke.yml
 
-	* rpm.pip-glibc.yml $B$N8F$S=P$7MQ$G$9(B
+	* rpm.pip-glibc.yml の呼び出し用です
 
-	* workflow_dispatch $B$G5/F0$7$^$9(B
+	* workflow_dispatch で起動します
 
 * PiP-glibc:docker.pip-glibc.yml
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: centos7 centos8
 		* archtypes: multiarch amd64 arm64
 
 * PiP-glibc:docker.pip-glibc.invoke.yml
 
-	* docker.pip-glibc.yml $B$N8F$S=P$7MQ$G$9(B
+	* docker.pip-glibc.yml の呼び出し用です
 
-	* workflow_dispatch $B$G5/F0$7$^$9(B
+	* workflow_dispatch で起動します
 
 
-## PiP $B%j%]%8%H%j(B
+## PiP リポジトリ
 
 * PiP:test.yml
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: [centos7, centos8]
 		* archs: [amd64, arm64]
@@ -140,15 +140,15 @@ client_payload $B$O(B repository_dispatch $B$G<u$1<h$kF~NO0z?t$G$9!#(B
 
 * PiP:test.invoke.yml
 
-	* test.yml $B$N8F$S=P$7MQ$G$9(B
+	* test.yml の呼び出し用です
 
-	* push, pull-request, workflow_dispatch $B$G5/F0$7$^$9(B
+	* push, pull-request, workflow_dispatch で起動します
 
 * PiP:rpm.pip.yml
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: centos7 centos8
 		* archs: amd64 arm64
@@ -156,25 +156,25 @@ client_payload $B$O(B repository_dispatch $B$G<u$1<h$kF~NO0z?t$G$9!#(B
 
 * PiP:docker.pip-glibc-libpip.yml
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: centos7 centos8
 		* archtypes: multiarch amd64 arm64
 		* pip_versions: 2 3
 
-## PiP-gdb $B%j%]%8%H%j(B
+## PiP-gdb リポジトリ
 
 * PiP-gdb:test.yml
 
-	* push, pull-request, workflow_dispatch $B$G5/F0$7$^$9(B
+	* push, pull-request, workflow_dispatch で起動します
 
 * PiP-gdb:rpm.pip-gdb.yml
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: centos7 centos8
 		* archs: amd64 arm64
@@ -182,133 +182,133 @@ client_payload $B$O(B repository_dispatch $B$G<u$1<h$kF~NO0z?t$G$9!#(B
 
 * PiP-gdb:docker.pip-glibc-libpip-gdb.yml
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: centos7 centos8
 		* archtypes: multiarch amd64 arm64
 		* pip_versions: 2 3
 
-## PiP-Testsuite $B%j%]%8%H%j(B
+## PiP-Testsuite リポジトリ
 
 * PiP-Testsuite:test.invoke.yml
 
-	* push, pull-request, workflow_dispatch $B$G5/F0$7$^$9(B
+	* push, pull-request, workflow_dispatch で起動します
 
-## PiP-pip $B%j%]%8%H%j(B
+## PiP-pip リポジトリ
 
 * PiP-pip:test.yml
 
-	* push, pull-request, workflow_dispatch $B$G5/F0$7$^$9(B
+	* push, pull-request, workflow_dispatch で起動します
 
 * PiP-pip:docker.pip-prep.yml
 
-	* push $B$*$h$S(B workflow_dispatch $B$G5/F0$7$^$9(B
+	* push および workflow_dispatch で起動します
 
 * PiP-pip:docker.process-in-process.yml
 
-	* repository_dispatch $B$G5/F0$7$^$9!#(B
+	* repository_dispatch で起動します。
 
-	* client_payload $B$O0J2<$NDL$j$G$9(B
+	* client_payload は以下の通りです
 
 		* distros: centos7 centos8
 
 		* pip_versions: 2 3
 
-		* archtypes $B0z?t$O$J$$!#(B
-		  $B$3$l$O!"$N8BDj$O(B RPM $B$d(B Docker $B%$%a!<%8$N@8@.$G$OI,MW$@$,(B
-		  $B%(%s%I%f!<%6!<8~$1(B Docker $B%$%a!<%8Ds6!$,L\E*$N(B
-		  $B$3$N%o!<%/%U%m!<$G$O(B multiarch $B$N$_$NDs6!$G==J,$J$?$a(B
+		* archtypes 引数はない。
+		  これは、の限定は RPM や Docker イメージの生成では必要だが
+		  エンドユーザー向け Docker イメージ提供が目的の
+		  このワークフローでは multiarch のみの提供で十分なため
 
 * PiP-pip:docker.process-in-process.invoke.yml
 
-	* workflow_dispatch $B$G5/F0$7$^$9!#(B
+	* workflow_dispatch で起動します。
 
-	* docker.process-in-process.yml $B$N8F$S=P$7MQ(B
+	* docker.process-in-process.yml の呼び出し用
 
-# $B<BAu$7$?%o!<%/%U%m!<4V$N8F$S=P$74X78(B
+# 実装したワークフロー間の呼び出し関係
 
-repository_dispatch $B5!G=$K$h$k!"%o!<%/%U%m!<4V$N8F$S=P$74X78$r<($7$^$9!#(B
+repository_dispatch 機能による、ワークフロー間の呼び出し関係を示します。
 
-$B3g8LFb$O%$%Y%s%HL>$G$9!#(B
+括弧内はイベント名です。
 
-## PiP-glibc $B%j%]%8%H%j(B
+## PiP-glibc リポジトリ
 
 * PiP-glibc:test.yml
-  $B"*(B (pip-glibc-test-ok) $B"*(B PiP-glibc:rpm.pip-glibc.yml
+  → (pip-glibc-test-ok) → PiP-glibc:rpm.pip-glibc.yml
 
-	* $B"((B pull-request $B$N>l9g$O(B dispatch $B$7$J$$(B
+	* ※ pull-request の場合は dispatch しない
 
 * PiP-glibc:rpm.pip-glibc.invoke.yml
-  $B"*(B (pip-glibc-rpm-invoke) $B"*(B PiP-glibc:rpm.pip-glibc.yml
+  → (pip-glibc-rpm-invoke) → PiP-glibc:rpm.pip-glibc.yml
 
 * PiP-glibc:rpm.pip-glibc.yml
-  $B"*(B (pip-glibc-rpm-built) $B"*(B PiP-glibc:docker.pip-glibc.yml
+  → (pip-glibc-rpm-built) → PiP-glibc:docker.pip-glibc.yml
 
 * PiP-glibc:docker.pip-glibc.invoke.yml
-  $B"*(B (pip-glibc-docker-invoke) $B"*(B PiP-glibc:docker.pip-glibc.yml
+  → (pip-glibc-docker-invoke) → PiP-glibc:docker.pip-glibc.yml
 
 * PiP-glibc:docker.pip-glibc.yml
-  $B"*(B (pip-glibc-built) $B"*(B PiP:test.yml
+  → (pip-glibc-built) → PiP:test.yml
 
-## PiP $B%j%]%8%H%j(B
+## PiP リポジトリ
 
 * PiP:update.yml
-  $B"*(B (pip-update) $B"*(B PiP:test.yml
+  → (pip-update) → PiP:test.yml
 
-	* $B"((B pull-request $B$N>l9g$O(B dispatch: false $B$rEO$9(B
+	* ※ pull-request の場合は dispatch: false を渡す
 
 * PiP:test.invoke.yml
-  $B"*(B (pip-test-invoke) $B"*(B PiP:test.yml
+  → (pip-test-invoke) → PiP:test.yml
 
 * PiP:test.yml
-  $B"*(B (pip-test-ok) $B"*(B PiP:rpm.pip.yml
+  → (pip-test-ok) → PiP:rpm.pip.yml
 
 * PiP:rpm.process-in-process.yml
-  $B"*(B (pip-rpm-built) $B"*(B PiP:docker.pip-glibc-libpip
+  → (pip-rpm-built) → PiP:docker.pip-glibc-libpip
 
 * PiP:docker.pip-glibc-libpip
-  $B"*(B (pip-built) $B"*(B PiP-gdb:test.yml
+  → (pip-built) → PiP-gdb:test.yml
 
-## PiP-Testsuite $B%j%]%8%H%j(B
+## PiP-Testsuite リポジトリ
 
 * PiP-Testsuite:test.invoke.yml
-  $B"*(B (pip-testsuite-update) $B"*(B PiP:test.yml
+  → (pip-testsuite-update) → PiP:test.yml
 
-	* $B"((B pull-request $B$N>l9g$O(B dispatch $B$7$J$$(B
+	* ※ pull-request の場合は dispatch しない
 
-## PiP-Testsuite $B%j%]%8%H%j(B
+## PiP-Testsuite リポジトリ
 
 * PiP-Testsuite:update.yml
-  $B"*(B (pip-testsuite-update) $B"*(B PiP:test.yml
+  → (pip-testsuite-update) → PiP:test.yml
 
-	* $B"((B $B>o$K(B dispatch: false $B$rEO$9(B
+	* ※ 常に dispatch: false を渡す
 
-## PiP-gdb $B%j%]%8%H%j(B
-
-* PiP-gdb:test.yml
-  $B"*(B (pip-gdb-test-ok) $B"*(B PiP:rpm.pip.yml
-
-	* $B"((B pull-request $B$N>l9g$O(B dispatch $B$7$J$$(B
+## PiP-gdb リポジトリ
 
 * PiP-gdb:test.yml
-  $B"*(B (pip-gdb-test-ok) $B"*(B PiP-pip:test.yml
+  → (pip-gdb-test-ok) → PiP:rpm.pip.yml
 
-	* $B"((B pull-request $B$N>l9g$O(B dispatch $B$7$J$$(B
+	* ※ pull-request の場合は dispatch しない
+
+* PiP-gdb:test.yml
+  → (pip-gdb-test-ok) → PiP-pip:test.yml
+
+	* ※ pull-request の場合は dispatch しない
 
 * PiP-gdb:rpm.pip-gdb.yml
-  $B"*(B (pip-gdb-rpm-built) $B"*(B PiP-gdb:docker.pip-glibc-libpip-gdb.yml
+  → (pip-gdb-rpm-built) → PiP-gdb:docker.pip-glibc-libpip-gdb.yml
 
 * PiP-gdb:docker.pip-glibc-libpip-gdb.yml
 
-## PiP-pip $B%j%]%8%H%j(B
+## PiP-pip リポジトリ
 
 * PiP-pip:test.yml
-  $B"*(B (pip-pip-test-ok) $B"*(B PiP-pip:docker.process-in-process.yml
+  → (pip-pip-test-ok) → PiP-pip:docker.process-in-process.yml
 
-	* $B"((B pull-request $B$N>l9g$O(B dispatch $B$7$J$$(B
+	* ※ pull-request の場合は dispatch しない
 
 * PiP-pip:docker.pip-prep.yml
-  $B"*(B (pip-prep-docker-built) $B"*(B PiP-glibc:docker.pip-glibc.yml
+  → (pip-prep-docker-built) → PiP-glibc:docker.pip-glibc.yml
 
