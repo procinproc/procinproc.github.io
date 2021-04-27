@@ -145,12 +145,12 @@ The above two examples will show you the same document you are reading.
 ## PDF
 
 [PDF documents](doc/latex-inuse/libpip-manpages.pdf) will be installed at
-**PIP\_INSTALL\_DIR**/share/pdf.
+**PIP\_INSTALL\_DIR**/share/doc/PiP/*.pdf.
 
 ## HTML
 
 [HTML documents](doc/html/index.html) will be installed at
-**PIP\_INSTALL\_DIR**/share/html.
+**PIP\_INSTALL\_DIR**/share/doc/PiP/index.html.
 
 # Getting Started
 
@@ -429,7 +429,7 @@ Analysis (SC '20). IEEE Press, Article 36, 1–15.
 
 # Author
 
-Atsushi Hori  
-National Institute of Informatics  
-(formerly Riken Center for Commputational Science)  
-Japan  
+Atsushi Hori
+National Institute of Informatics
+(formerly Riken Center for Commputational Science)
+Japan
