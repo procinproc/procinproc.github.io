@@ -143,13 +143,12 @@ Or, use the pip-man command (from v2).
 The above two examples will show you the same document you are reading.
 
 ## PDF
-
-[PDF documents](doc/latex-inuse/libpip-manpages.pdf) will be installed at
+[PDF documents](../PiP/tree/pip-3/doc/latex-inuse/libpip-manpages.pdf) will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/libpip-manpages.pdf.
 
 ## HTML
 
-[HTML documents](doc/html/index.html) will be installed at
+[HTML documents](../PiP/tree/pip-3/doc/html/index.html) will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/index.html.
 
 # Getting Started
