@@ -145,12 +145,12 @@ The above two examples will show you the same document you are reading.
 ## PDF
 
 [PDF documents](doc/latex-inuse/libpip-manpages.pdf) will be installed at
-**PIP\_INSTALL\_DIR**/share/pdf.
+**PIP\_INSTALL\_DIR**/share/doc/PiP/libpip-manpages.pdf.
 
 ## HTML
 
 [HTML documents](doc/html/index.html) will be installed at
-**PIP\_INSTALL\_DIR**/share/html.
+**PIP\_INSTALL\_DIR**/share/doc/PiP/index.html.
 
 # Getting Started
 
@@ -222,12 +222,12 @@ Above example shows that the 'a.out' program can run as a PiP root and PiP tasks
 
 ## Debugging your PiP programs by the pip-gdb command
 
-The following procedure attaches all PiP tasks and PiP root which
+The following procedure is to attach all PiP tasks and PiP root which
 created those tasks. Each PiP task is treated as a GDB inferior
-in PiP-gdb. Note that PiP-glibc and PiP-gdb packages are required to
+in PiP-gdb.  Note that PiP-glibc and PiP-gdb packages are required to
 do this. Note that all features in this section are only supported by
 PiP v2 or higher, only with the process execution mode (thread
-mode is NOT supported).
+mode and ULP/BLT in PiP v3 are NOT supported).
 
     $ pip-gdb
     (pip-gdb) attach PID
@@ -340,12 +340,6 @@ balanced MPI communication," In Proceedings of the International
 Conference for High Performance Computing, Networking, Storage and
 Analysis (SC '20). IEEE Press, Article 36, 1–15.
 
-## Presentation Slides
-
- * [HPDC'18](slides/HPDC18.pdf)
- * [ROSS'18](slides/HPDC18-ROSS.pdf)
- * [IPDPS/RADR'20](slides/IPDPS-RADR-2020.pdf)
-
 # Commands
 - pipcc
 - pip-check
@@ -429,7 +423,7 @@ Analysis (SC '20). IEEE Press, Article 36, 1–15.
 
 # Author
 
-Atsushi Hori  
-National Institute of Informatics  
-(formerly Riken Center for Commputational Science)  
-Japan  
+Atsushi Hori \n
+National Institute of Informatics \n
+(formerly Riken Center for Commputational Science) \n
+Japan \n
