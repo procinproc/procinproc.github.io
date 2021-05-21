@@ -170,6 +170,14 @@ client_payload は repository_dispatch で受け取る入力引数です。
 
 	* push, pull-request, workflow_dispatch で起動します
 
+	* 以下の理由から arm64 では gdb testsuite は実行しません
+
+		* GitHub Actions には 2021年3月の時点では arm64 の実行環境がなく Linux の binfmt 機能を用いて qemu でバイナリエミュレーションをしています
+
+		* binfmt 機能を用いてる関係上、カーネルは x86_64 版で動いており、各プロセスがそれぞれ個別の qemu プロセスで aarch64 バイナリをエミュレーションしています。
+
+		* gdb testsuite が起動した pip-gdb は ptrace(2) システムコールを発行しますが、qemu のこの実行形態では ptrace(2) をサポートしないため pip-gdb は動作しません。サポートされていない理由は、ptrace 対象のプロセスが x86_64 バイナリである別の qemu プロセスであるため、aarch64 バイナリを対象とした ptrace 機能の実装が極めて困難なためです。       
+
 * PiP-gdb:rpm.pip-gdb.yml
 
 	* repository_dispatch で起動します。
