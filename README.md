@@ -77,13 +77,9 @@ above mentioned ULP can only work with the process mode.
 When the **PIP\_MODE** environment variable set to "thread"
 then
 the PiP library runs in the pthread mode, and if it is set to
-"process" then it runs in the process mode. There are also three
-implementations in the process mode; "process:preload,"
-"process:pipclone" and "process:got." The "process:preload" mode
-must be with the **LD\_PRELOAD** environment variable setting so that
-the clone() system call wrapper can work with. The
-"process:pipclone" mode is only effective with the PIP-patched
-glibc library (see below).
+"process" then it runs in the process mode. There are also two
+implementations in the process mode; "process:wrapclone,"
+"process:libcclone." 
 
 Several function are made available by the PiP library to absorb the
 functional differences due to the execution modes.
@@ -144,12 +140,12 @@ The above two examples will show you the same document you are reading.
 
 ## PDF
 
-[PDF documents](libpip-manpages.pdf) will be installed at
+[PDF documents](doc/latex-inuse/libpip-manpages.pdf) will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/libpip-manpages.pdf.
 
 ## HTML
 
-[HTML documents](html/index.html) will be installed at
+[HTML documents](doc/html/index.html) will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/index.html.
 
 # Getting Started
@@ -338,15 +334,24 @@ Kaiming Ouyang, Min Si, Atsushi Hori, Zizhong Chen, and Pavan
 Balaji. 2020. "CAB-MPI: exploring interprocess work-stealing towards
 balanced MPI communication," In Proceedings of the International
 Conference for High Performance Computing, Networking, Storage and
-Analysis (SC '20). IEEE Press, Article 36, 1–15.
+Analysis (SC '20). IEEE Press, Article 36.
+
+Kaiming Ouyang, Min Si, Atsushi Hori, Zizhong Chen, Pavan Balaji. 2021.
+"Daps: A dynamic asynchronous progress stealing model for mpi communication,"
+In Proceedings of 2021 IEEE International Conference on Cluster Computing (CLUSTER).
+
+Atsushi Hori, Kaiming Ouyang, Balazs Georfi, Yutaka Ishikawa. 2021. "On the 
+Difference between Shared Memory and Shared Address Space in HPC Communication,"
+In Proceedings of Supercomputing Asia 2022, Springer LNCS 13214 2022.
 
 # Commands
-- pipcc
 - pip-check
 - pip-exec
-- pipfc
 - pip-man
 - pip-mode
+- pip-tgkill
+- pipcc
+- pipfc
 - pips
 - printpipmode
 
@@ -356,39 +361,24 @@ Analysis (SC '20). IEEE Press, Article 36, 1–15.
 - pip\_barrier\_fin
 - pip\_barrier\_init
 - pip\_barrier\_wait
-- pip\_blt\_spawn
-- pip\_couple
-- pip\_decouple
-- pip\_dequeue\_and\_resume
-- pip\_dequeue\_and\_resume\_N
-- pip\_dequeue\_and\_resume\_N\_nolock
-- pip\_dequeue\_and\_resume\_nolock
 - pip\_exit
 - pip\_export
 - pip\_fin
 - pip\_get\_aux
-- pip\_get\_dlmopen\_info
 - pip\_get\_mode
 - pip\_get\_mode\_str
 - pip\_get\_ntasks
 - pip\_get\_pipid
-- pip\_get\_sched\_domain
 - pip\_get\_system\_id
-- pip\_get\_task\_by\_pipid
-- pip\_get\_task\_pipid
 - pip\_import
 - pip\_init
-- pip\_isa\_root
-- pip\_isa\_task
 - pip\_is\_initialized
 - pip\_is\_shared\_fd
 - pip\_is\_threaded
+- pip\_isa\_root
+- pip\_isa\_task
 - pip\_kill
-- pip\_kill\_all\_tasks
-- pip\_mutex\_fin
-- pip\_mutex\_init
-- pip\_mutex\_lock
-- pip\_mutex\_unlock
+- pip\_kill\_all\_child\_tasks
 - pip\_named\_export
 - pip\_named\_import
 - pip\_named\_tryimport
@@ -399,31 +389,14 @@ Analysis (SC '20). IEEE Press, Article 36, 1–15.
 - pip\_spawn\_from\_func
 - pip\_spawn\_from\_main
 - pip\_spawn\_hook
-- pip\_suspend\_and\_enqueue
-- pip\_suspend\_and\_enqueue\_nolock
-- pip\_task\_queue\_count
-- pip\_task\_queue\_dequeue
-- pip\_task\_queue\_describe
-- pip\_task\_queue\_enqueue
-- pip\_task\_queue\_fin
-- pip\_task\_queue\_init
-- pip\_task\_queue\_isempty
-- pip\_task\_queue\_lock
-- pip\_task\_queue\_trylock
-- pip\_task\_queue\_unlock
-- pip\_task\_self
 - pip\_task\_spawn
 - pip\_trywait
 - pip\_trywait\_any
 - pip\_wait
 - pip\_wait\_any
 - pip\_yield
-- pip\_yield\_to
 
 
 # Author
 
-Atsushi Hori  
-National Institute of Informatics  
-(formerly Riken Center for Commputational Science)  
-Japan  
+Atsushi Hori
