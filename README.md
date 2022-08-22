@@ -124,7 +124,7 @@ the example of `pip-pip` usage:
 
 ## Tutorial
 
-[Tutorial PDF](PiP-Tutorial.pdf)
+[Tutorial PDF](https://procinproc.github.io/PiP-Tutorial.pdf)
 
 ## Man pages
 
@@ -140,7 +140,7 @@ The above two examples will show you the same document you are reading.
 
 ## PDF
 
-[PDF documents](libpip-manpages.pdf) will be installed at
+[PDF documents](https://procinproc.github.io/libpip-manpages.pdf) will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/libpip-manpages.pdf.
 
 ## HTML
