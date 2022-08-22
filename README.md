@@ -145,7 +145,7 @@ The above two examples will show you the same document you are reading.
 
 ## HTML
 
-[HTML documents]<html/index.html> will be installed at
+HTML documents <html/index.html> will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/index.html.
 
 # Getting Started
