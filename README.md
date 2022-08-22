@@ -122,7 +122,9 @@ the example of `pip-pip` usage:
 
 # PiP Documents
 
-The following PiP documents are created by using [Doxygen](https://www.doxygen.nl/).
+## Tutorial
+
+[Tutorial PDF](PiP-Tutorial.pdf)
 
 ## Man pages
 
@@ -138,12 +140,12 @@ The above two examples will show you the same document you are reading.
 
 ## PDF
 
-[PDF documents](doc/latex-inuse/libpip-manpages.pdf) will be installed at
+[PDF documents](libpip-manpages.pdf) will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/libpip-manpages.pdf.
 
 ## HTML
 
-[HTML documents](doc/html/index.html) will be installed at
+[HTML documents](html/index.html) will be installed at
 **PIP\_INSTALL\_DIR**/share/doc/PiP/index.html.
 
 # Getting Started
